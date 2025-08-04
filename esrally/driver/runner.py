@@ -2906,6 +2906,9 @@ class Esql(Runner):
             headers = None
         # disable eager response parsing - responses might be huge thus skewing results
         es.return_raw_response()
+
+        self.logger.info(f"RUNNING ESQL QUERY BODY {body} REQUEST PARAMS {request_params}")
+        print(f"RUNNING ESQL QUERY BODY {body} REQUEST PARAMS {request_params}")
         await es.perform_request(method="POST", path="/_query", headers=headers, body=body, params=request_params)
         return {"success": True, "unit": "ops", "weight": 1}
 
